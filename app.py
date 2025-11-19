@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from flask import Flask
 from flask_caching import Cache
 from flask_cors import CORS
+from flask_migrate import Migrate
 
 from constants import MAIN_DIR
 from db_loader import db
@@ -36,6 +37,8 @@ cache_config = {
 }
 app.config.from_mapping(cache_config)
 cache = Cache(app)
+
+migrate = Migrate(app, db)
 
 if dev_mode:
     print('using local')

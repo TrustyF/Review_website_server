@@ -116,8 +116,8 @@ class Media(db.Model):
     author: str = db.Column(db.String(200))
     studio: str = db.Column(db.String(200))
 
+    media_source: str = db.Column(db.String(50), nullable=False)
     media_type: str = db.Column(db.String(50), nullable=False, index=True)
-    media_medium: str = db.Column(db.String(50))
 
     user_rating: int = db.Column(db.Integer, nullable=False, index=True)
     public_rating: float = db.Column(db.Float, index=True)

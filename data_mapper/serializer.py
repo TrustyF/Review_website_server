@@ -59,6 +59,7 @@ def serialize_media(media):
         'author': media.author,
         'studio': media.studio,
         'media_type': media.media_type,
+        'media_source': media.media_source,
         'media_medium': media.media_medium,
         'user_rating': media.user_rating,
         'public_rating': media.public_rating,

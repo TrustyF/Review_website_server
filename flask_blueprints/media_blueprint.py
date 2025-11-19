@@ -284,7 +284,7 @@ def get():
 def find():
     media_name = request.args.get('name')
     media_type = request.args.get('type')
-    media_id = request.args.get('id')
+    media_source = request.args.get('source')
     media_page = request.args.get('page', type=int)
 
     # print(f'searching {media_name=} {media_type=} {media_id=}')
@@ -390,31 +390,31 @@ def find():
 
     mapped_media = []
 
-    if media_type in ['movie', 'tv']:
+    if media_source == 'imdb':
         full_medias = request_tmdb()
 
         if len(full_medias) > 0:
             mapped_media = map_from_tmdb(full_medias, media_type)
 
-    elif media_type in ['manga']:
+    elif media_source == 'mangadex':
         full_medias = request_mangadex()
 
         if len(full_medias) > 0:
             mapped_media = map_from_mangadex(full_medias, media_type)
 
-    elif media_type in ['comic']:
+    elif media_source == 'comic_vine':
         full_medias = request_comic_vine()
 
         if len(full_medias) > 0:
             mapped_media = map_from_comic_vine(full_medias, media_type)
 
-    elif media_type in ['game']:
+    elif media_source == 'igdb':
         full_medias = request_igdb()
 
         if len(full_medias) > 0:
             mapped_media = map_from_igdb(full_medias, media_type)
 
-    elif media_type in ['youtube']:
+    elif media_source == 'youtube':
         full_medias = request_youtube()
 
         if len(full_medias) > 0:
@@ -473,7 +473,6 @@ def add():
 def update():
     # parameters
     data = request.get_json()
-    # print('update', data)
     # pprint.pprint(data)
 
     query = db.session.query(Media).filter_by(id=data['id'])

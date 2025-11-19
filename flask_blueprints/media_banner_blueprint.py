@@ -10,7 +10,6 @@ bp = Blueprint('media_banner', __name__)
 
 
 @bp.route("/recent_watch", methods=['POST'])
-@cache.cached()
 def get_recent_watch():
     # parameters
     data = request.get_json()
@@ -53,7 +52,6 @@ def get_recent_watch():
 
 
 @bp.route("/recent_release", methods=['POST'])
-@cache.cached()
 def get_recent_release():
     # parameters
     data = request.get_json()
